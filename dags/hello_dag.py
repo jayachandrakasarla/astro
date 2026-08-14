@@ -16,7 +16,15 @@ def hello_dag():
         value = Variable.get("hello-world")
         print(f"hello-world = {value}")
 
-    print_hello_world()
+        return value
 
+    @task
+    def print_value(val):
+        print(f"value from prev task: {val}")
+
+    t1 = print_hello_world()
+    t2 = print_value(t1)
+
+    t1 >> t2
 
 hello_dag()
