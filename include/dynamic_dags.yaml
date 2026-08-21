@@ -1,0 +1,182 @@
+dags:
+  - dag_id: dynamic_sales_report
+    schedule: "@daily"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "sales"]
+    owner: "Astro"
+    retries: 2
+    shard_count: 4
+    quality_threshold: 0.75
+    params:
+      source_table: "raw.sales"
+      target_table: "reporting.sales_daily"
+      region: "us-east"
+
+  - dag_id: dynamic_inventory_sync
+    schedule: "@hourly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "inventory"]
+    owner: "Astro"
+    retries: 3
+    shard_count: 5
+    quality_threshold: 0.7
+    params:
+      source_table: "raw.inventory"
+      target_table: "reporting.inventory_current"
+      region: "eu-west"
+
+  - dag_id: dynamic_customer_export
+    schedule: "@weekly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "customer"]
+    owner: "Astro"
+    retries: 1
+    shard_count: 3
+    quality_threshold: 0.8
+    params:
+      source_table: "raw.customers"
+      target_table: "exports.customers_weekly"
+      region: "global"
+
+  - dag_id: dynamic_order_processing
+    schedule: "@hourly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "orders"]
+    owner: "Astro"
+    retries: 2
+    shard_count: 6
+    quality_threshold: 0.7
+    params:
+      source_table: "raw.orders"
+      target_table: "reporting.orders_hourly"
+      region: "us-east"
+
+  - dag_id: dynamic_payment_reconciliation
+    schedule: "@daily"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "finance"]
+    owner: "Astro"
+    retries: 3
+    shard_count: 4
+    quality_threshold: 0.9
+    params:
+      source_table: "raw.payments"
+      target_table: "finance.payments_reconciled"
+      region: "us-east"
+
+  - dag_id: dynamic_shipment_tracking
+    schedule: "@hourly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "logistics"]
+    owner: "Astro"
+    retries: 2
+    shard_count: 5
+    quality_threshold: 0.65
+    params:
+      source_table: "raw.shipments"
+      target_table: "reporting.shipments_current"
+      region: "eu-west"
+
+  - dag_id: dynamic_marketing_campaign_report
+    schedule: "@daily"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "marketing"]
+    owner: "Astro"
+    retries: 1
+    shard_count: 3
+    quality_threshold: 0.75
+    params:
+      source_table: "raw.campaigns"
+      target_table: "reporting.campaigns_daily"
+      region: "global"
+
+  - dag_id: dynamic_employee_directory_sync
+    schedule: "@weekly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "hr"]
+    owner: "Astro"
+    retries: 1
+    shard_count: 2
+    quality_threshold: 0.85
+    params:
+      source_table: "raw.employees"
+      target_table: "reporting.employees_weekly"
+      region: "global"
+
+  - dag_id: dynamic_web_analytics_ingest
+    schedule: "@hourly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "analytics"]
+    owner: "Astro"
+    retries: 3
+    shard_count: 8
+    quality_threshold: 0.6
+    params:
+      source_table: "raw.web_events"
+      target_table: "reporting.web_events_hourly"
+      region: "us-east"
+
+  - dag_id: dynamic_supplier_invoice_sync
+    schedule: "@daily"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "finance"]
+    owner: "Astro"
+    retries: 2
+    shard_count: 4
+    quality_threshold: 0.85
+    params:
+      source_table: "raw.supplier_invoices"
+      target_table: "finance.supplier_invoices_daily"
+      region: "eu-west"
+
+  - dag_id: dynamic_product_catalog_sync
+    schedule: "@daily"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "product"]
+    owner: "Astro"
+    retries: 1
+    shard_count: 3
+    quality_threshold: 0.75
+    params:
+      source_table: "raw.products"
+      target_table: "reporting.products_daily"
+      region: "global"
+
+  - dag_id: dynamic_support_ticket_export
+    schedule: "@weekly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "support"]
+    owner: "Astro"
+    retries: 1
+    shard_count: 3
+    quality_threshold: 0.7
+    params:
+      source_table: "raw.support_tickets"
+      target_table: "exports.support_tickets_weekly"
+      region: "global"
+
+  - dag_id: dynamic_warehouse_capacity_report
+    schedule: "@hourly"
+    start_date: "2025-01-01"
+    catchup: false
+    tags: ["dynamic", "inventory"]
+    owner: "Astro"
+    retries: 2
+    shard_count: 5
+    quality_threshold: 0.7
+    params:
+      source_table: "raw.warehouse_capacity"
+      target_table: "reporting.warehouse_capacity_hourly"
+      region: "us-east"
