@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from airflow.sdk import Variable, dag, task
 from pendulum import datetime
-
+from k8s import pod
 
 @dag(
     schedule=None,
