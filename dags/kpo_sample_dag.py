@@ -31,7 +31,7 @@ def kpo_sample_dag():
 
     run_in_pod = KubernetesPodOperator(
         task_id="run_python_in_pod",
-        namespace=conf.get("kubernetes_executor", "namespace", fallback="default"),
+        namespace="re",
         name="kpo-python-slim",
         image="python:slim",
         cmds=["python", "-c", SAMPLE_CODE],
