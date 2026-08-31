@@ -20,8 +20,8 @@ CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "include", "dynamic_
 
 GLOBAL_SUB_REGIONS = ["us-east", "us-west", "eu-west", "apac"]
 
-ENV = Variable.get("ENVIRONMENT")
-print(f"Airflow variable from: {ENV}")
+# ENV = Variable.get("ENVIRONMENT")
+# print(f"Airflow variable from: {ENV}")
 
 
 def build_dag(config: dict):
