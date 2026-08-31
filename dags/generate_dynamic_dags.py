@@ -13,12 +13,15 @@ in the YAML.
 import os
 
 import yaml
-from airflow.sdk import dag, task, task_group
+from airflow.sdk import dag, task, task_group, Variable
 from pendulum import from_format
 
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "include", "dynamic_dags.yaml")
 
 GLOBAL_SUB_REGIONS = ["us-east", "us-west", "eu-west", "apac"]
+
+ENV = Variable.get("ENVIRONMENT")
+print(f"Airflow variable from: {ENV}")
 
 
 def build_dag(config: dict):
