@@ -3,7 +3,7 @@ from airflow.sdk import dag, task
 import time
 
 #sleep for 10 seconds at top level
-time.sleep(10)
+# time.sleep(10)
 
 @dag(
     dag_id="slow_dag",
