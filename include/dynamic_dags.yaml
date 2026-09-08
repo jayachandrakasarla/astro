@@ -1370,31 +1370,3 @@ dags:
       source_table: "raw.mortgage_applications"
       target_table: "finance.mortgage_underwriting_daily"
       region: "us-east"
-
-  - dag_id: dynamic_investment_portfolio_sync
-    schedule: "@daily"
-    start_date: "2025-01-01"
-    catchup: false
-    tags: ["dynamic", "finance"]
-    owner: "Astro"
-    retries: 2
-    shard_count: 4
-    quality_threshold: 0.85
-    params:
-      source_table: "raw.portfolio_positions"
-      target_table: "finance.portfolio_sync_daily"
-      region: "global"
-
-  - dag_id: dynamic_trading_activity_report
-    schedule: "@hourly"
-    start_date: "2025-01-01"
-    catchup: false
-    tags: ["dynamic", "finance"]
-    owner: "Astro"
-    retries: 3
-    shard_count: 6
-    quality_threshold: 0.9
-    params:
-      source_table: "raw.trading_activity"
-      target_table: "finance.trading_activity_hourly"
-      region: "us-east"
