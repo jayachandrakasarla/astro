@@ -139,6 +139,7 @@ def build_dag(config: dict):
     return dynamic_dag()
 
 
-with open(CONFIG_PATH) as f:
-    for dag_config in yaml.safe_load(f)["dags"]:
-        build_dag(dag_config)
+if Variable.get("generate_dynamic_dags", "") == "True":
+    with open(CONFIG_PATH) as f:
+        for dag_config in yaml.safe_load(f)["dags"]:
+            build_dag(dag_config)
